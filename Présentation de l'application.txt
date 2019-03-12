@@ -1,0 +1,8 @@
+Bibliothèque
+
+Progiciel de gestion d'une bibliothèque. 
+Comprend la gestion :
+	des membres, 
+	des différents ouvrages,
+	des emprunts de ces derniers (par des membres ou simplement pas des non-membres ayant renseignés leurs informations personelles)
+
