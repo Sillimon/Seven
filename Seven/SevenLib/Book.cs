@@ -11,7 +11,9 @@ namespace SevenLib
     {
         #region CONSTRUCTORS
 
-        public Book(String title, DateTime date, Genre? genre , String summary = null, Author author = null)
+        public Book() { }
+
+        public Book(String title, DateTime date, Genre genre , String summary, Author author = null)
         {
             this.Title = title;
             this.Date = date;
@@ -37,7 +39,7 @@ namespace SevenLib
 
         public DateTime Date { get; set; }
 
-        public Genre? Genre { get; set; }
+        public Genre Genre { get; set; }
 
         public String Summary { get; set; }
 
@@ -50,7 +52,7 @@ namespace SevenLib
 
         public override string ToString()
         {
-            return String.Format("'{0}' \n--> Release data : {1}" +
+            return String.Format("'{0}' \n--> Release date : {1}" +
                 "\n--> Genre : {2}" +
                 "\n--> Author : {3}" +
                 "\n--> Summary : {4}",

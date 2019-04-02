@@ -1,5 +1,4 @@
-﻿using SevenLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,21 +16,25 @@ using System.Windows.Shapes;
 namespace Seven
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour ucBook.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ucBook : UserControl
     {
-        public MainWindow()
+        BookViewModel bookModel = new BookViewModel();
+
+        public ucBook()
         {
             InitializeComponent();
-
-            BookTab.Content = new ucBook();
         }
 
         private void TabItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //do smth
+            base.DataContext = bookModel;
         }
 
+        private void BtSearch_Click(object sender, RoutedEventArgs e)
+        {
+            //Do smth
+        }
     }
 }
