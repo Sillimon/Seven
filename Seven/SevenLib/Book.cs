@@ -13,7 +13,7 @@ namespace SevenLib
 
         public Book() { }
 
-        public Book(String title, DateTime date, Genre genre , String summary, Author author = null)
+        public Book(String title, DateTime date, Genre genre , String summary, Author author)
         {
             this.Title = title;
             this.Date = date;

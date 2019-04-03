@@ -5,14 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Seven"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-
-    <Window.DataContext>
-        <local:BookViewModel/>
-    </Window.DataContext>
+        Title="MainWindow" Height="480" Width="800">
 
     <Grid>
-        <TabControl HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="792" Background="Black" FontWeight="Bold">
+        <TabControl HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="792" Background="Black" FontWeight="Bold">
 
             <!-- TABS -->
             <TabItem x:Name="HomeTab" Header="Home">
@@ -21,9 +17,11 @@
 
 
             <TabItem x:Name="BookTab" Header="Book"
-                     Height="22" VerticalAlignment="Bottom" 
-                     MouseLeftButtonDown="TabItem_MouseLeftButtonDown">
-                
+                     Height="Auto">
+
+                <local:ucBook x:Name="ucBook"
+                              Height="480" Width="Auto"></local:ucBook>
+
             </TabItem>
         </TabControl>
 

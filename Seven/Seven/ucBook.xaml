@@ -4,30 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Seven"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    
+             mc:Ignorable="d" d:DesignWidth="800" Height="480">
+
     <Grid Name="BookControl"
           Background="#FFE5E5E5" Margin="0,0,0,38" >
 
         <Grid Name="SearchBook"
-                          HorizontalAlignment="Left" Height="392" VerticalAlignment="Top" Width="525" Background="#FF9D63C5" Margin="0,10,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="265*"/>
-                <RowDefinition Height="108*"/>
-                <RowDefinition Height="18*"/>
-            </Grid.RowDefinitions>
+                          HorizontalAlignment="Left" Height="432" VerticalAlignment="Top" Width="525" Background="#FF9D63C5" Margin="0,10,0,0">
 
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" 
+            <TextBox  x:Name="tbSearch" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" 
                             Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Button x:Name="btSearch" HorizontalAlignment="Left" Margin="275,10,0,0" VerticalAlignment="Top" Width="75" Height="23" FontWeight="Normal" Click="BtSearch_Click">Search</Button>
 
-            <DataGrid ItemsSource="{Binding Books}" x:Name="dgvBooks" HorizontalAlignment="Left" Height="343" Margin="10,38,0,0" VerticalAlignment="Top" Width="505" Background="White" Grid.RowSpan="3"/>
+            <DataGrid ItemsSource="{Binding Books}" x:Name="dgvBooks" HorizontalAlignment="Left" Height="384" Margin="10,38,0,0" VerticalAlignment="Top" Width="505" Background="White"/>
         </Grid>
 
         <Grid Name="ShowBook"
-                        HorizontalAlignment="Left" Height="392" Margin="530,10,0,0" VerticalAlignment="Top" Width="270" Background="#FFD39E60">
+                        HorizontalAlignment="Left" Height="432" Margin="530,10,0,0" VerticalAlignment="Top" Width="270" Background="#FFD39E60">
 
             <TextBox Name="SelectedBookTitle" Text="{Binding Title, Mode=TwoWay}"
                             HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" 

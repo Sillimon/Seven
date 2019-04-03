@@ -26,6 +26,13 @@ namespace SevenDB
             return GetUniqueItem(sql, this.MapBook);
         }
 
+        public IEnumerable<Book> GetBooksByBeginningOfTitle(String title)
+        {
+            var sql = String.Format("SELECT * FROM Book WHERE Title LIKE '{0}%'", title);
+
+            return (IEnumerable<Book>)GetItems(sql, this.MapBook);
+        }
+
         public IEnumerable<Book> GetBooks()
         {
             var sql = "SELECT * FROM Book";
@@ -37,17 +44,7 @@ namespace SevenDB
         {
             bool hasAuthor = (book.Author != null);
 
-            var sql = String.Format("INSERT INTO Book (Title, Date, Genre, Summary");
-            
-            if(hasAuthor)
-                sql += ", Author";
-
-            sql += String.Format(") VALUES ('{0}', '{1}', {2}, '{3}'", book.Title, book.Date.ToString(), (int)book.Genre, book.Summary);
-
-            if (hasAuthor)
-                sql += String.Format(", {0}", book.Author);
-
-            sql += ")";
+            var sql = String.Format("INSERT INTO Book (Title, Date, Genre, Summary, Author) VALUES ('{0}', '{1}', {2}, '{3}', {4}", book.Title, book.Date.ToString(), (int)book.Genre, book.Summary, book.Author);
 
             return ExecuteNonQuery(sql) == 1;
         }
@@ -61,16 +58,13 @@ namespace SevenDB
 
         private Book MapBook(SQLiteDataReader reader)
         {
-            bool hasAuthor = (reader["Author"].GetType() != typeof(DBNull));
-
             return new Book()
             {
                 Title = reader["Title"].ToString(),
                 Date = DateTime.Parse(reader["Date"].ToString()),
-                //Date = DateTime.ParseExact(reader["Date"].ToString(), "d", null),
                 Genre = (SevenLib.Helpers.Genre)(int)reader["Genre"],
                 Summary = reader["Summary"].ToString(),
-                Author = hasAuthor ? (Author)reader["Author"] : null,
+                Author = (Author)reader["Author"]
             };
         }
     }

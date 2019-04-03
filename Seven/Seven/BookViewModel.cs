@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace Seven
 {
-    class BookViewModel : UserControl
+    class BookViewModel
     {
         public RepositoryBook repository;
 
@@ -20,6 +20,12 @@ namespace Seven
             repository = new RepositoryBook();
 
             books = repository.GetBooks().ToList<Book>();
+        }
+
+        public List<Book> searchBook(String title)
+        {
+            books = repository.GetBooksByBeginningOfTitle(title).ToList<Book>();
+            return books;
         }
 
     }

@@ -25,6 +25,7 @@ namespace Seven
         public ucBook()
         {
             InitializeComponent();
+
         }
 
         private void TabItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -34,7 +35,7 @@ namespace Seven
 
         private void BtSearch_Click(object sender, RoutedEventArgs e)
         {
-            //Do smth
+            bookModel.searchBook(tbSearch.Text);
         }
     }
 }

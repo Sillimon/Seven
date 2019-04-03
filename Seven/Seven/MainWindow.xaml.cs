@@ -23,14 +23,14 @@ namespace Seven
     {
         public MainWindow()
         {
+            Author a = new Author();
+
+            Book b = new Book("title test", DateTime.Now, SevenLib.Helpers.Genre.Comedy, "A quicky summary", a);
+
+            SevenDB.RepositoryBook rb = new SevenDB.RepositoryBook();
+            rb.AddBook(b);
+
             InitializeComponent();
-
-            BookTab.Content = new ucBook();
-        }
-
-        private void TabItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //do smth
         }
 
     }
