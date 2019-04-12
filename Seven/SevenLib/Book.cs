@@ -13,8 +13,9 @@ namespace SevenLib
 
         public Book() { }
 
-        public Book(String title, DateTime date, Genre genre , String summary, Author author)
+        public Book(String title, DateTime date, Genre genre , String summary, Author author, Int64? id = null)
         {
+            this.ID = id;
             this.Title = title;
             this.Date = date;
             this.Genre = genre;
@@ -24,6 +25,7 @@ namespace SevenLib
 
         public Book(Book BookToCopy)
         {
+            this.ID = BookToCopy.ID;
             this.Title = BookToCopy.Title;
             this.Date = BookToCopy.Date;
             this.Genre = BookToCopy.Genre;
@@ -34,6 +36,7 @@ namespace SevenLib
         #endregion
 
         #region GETTERS/SETTERS
+        public Int64? ID { get; set; }
 
         public String Title { get; set; }
 
@@ -52,10 +55,12 @@ namespace SevenLib
 
         public override string ToString()
         {
-            return String.Format("'{0}' \n--> Release date : {1}" +
+            return String.Format("'{0}'" +
+                "\n--> Release date : {1}" +
                 "\n--> Genre : {2}" +
                 "\n--> Author : {3}" +
                 "\n--> Summary : {4}",
+                Title,
                 Date.ToLongDateString(),
                 nameof(Genre),
                 Author.FirstName + " " + Author.LastName,

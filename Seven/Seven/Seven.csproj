@@ -73,9 +73,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ucBook.xaml.cs">
+    <Compile Include="Windows\AddEditAuthor.xaml.cs">
+      <DependentUpon>AddEditAuthor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddEditBook.xaml.cs">
+      <DependentUpon>AddEditBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AuthorViewModel.cs" />
+    <Compile Include="UserControls\ucAuthor.xaml.cs">
+      <DependentUpon>ucAuthor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucBook.xaml.cs">
       <DependentUpon>ucBook.xaml</DependentUpon>
     </Compile>
+    <Page Include="Windows\AddEditAuthor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\AddEditBook.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ucBook.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ucAuthor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -84,15 +110,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BookViewModel.cs" />
+    <Compile Include="ViewModels\BookViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ucBook.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

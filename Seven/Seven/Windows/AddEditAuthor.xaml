@@ -1,0 +1,30 @@
+﻿<Window x:Name="AddEditAuthorWindow" x:Class="Seven.AddEditAuthor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Seven"
+        mc:Ignorable="d"
+        Title="Manage Author" Height="309" Width="382.374">
+
+    <Grid>
+        <TextBox x:Name="TbLastName" HorizontalAlignment="Left" Height="23" Margin="81,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="255"/>
+        <Label x:Name="LbLastName" Content="Lastname :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+        <Label x:Name="LbFirstName" Content="FirstName :" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TbFirstName" HorizontalAlignment="Left" Height="23" Margin="81,62,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="255"/>
+
+        <Label x:Name="LbBirthDate" Content="BirthDate :" HorizontalAlignment="Left" Margin="9,110,0,0" VerticalAlignment="Top"/>
+        <DatePicker SelectedDateFormat="Long" x:Name="DpBirthDate" HorizontalAlignment="Left" Margin="81,112,0,0" VerticalAlignment="Top" Width="255"/>
+
+        <Label x:Name="LbDeathDate" Content="DeathDate :" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top"/>
+        <DatePicker SelectedDateFormat="Long" x:Name="DpDeathDate" HorizontalAlignment="Left" Margin="82,162,0,0" VerticalAlignment="Top" Width="255"/>
+
+        <Label x:Name="LbNationality" Content="Nationality :" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CbNationality" HorizontalAlignment="Left" Margin="81,204,0,0" VerticalAlignment="Top" Width="255"/>
+
+        <Button x:Name="BtOk" Content="Ok" IsDefault="True" HorizontalAlignment="Left" Margin="150,248,0,0" VerticalAlignment="Top" Width="100" Click="BtOk_Click"/>
+        <Button x:Name="BtCancel" Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Margin="264,248,0,0" VerticalAlignment="Top" Width="100" Click="BtCancel_Click"/>
+        
+    </Grid>
+</Window>

@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SevenDB
 {
     public abstract class BaseRepository<T>
+    where T : class
     {
         public string ConnectionString { get; set; }
 
@@ -16,73 +14,69 @@ namespace SevenDB
             this.ConnectionString = connectionString;
         }
 
-        protected T GetUniqueItem(string sql, Func<SQLiteDataReader, T> mappingMethod)
+        protected T GetUniqueItem(string sql, Func<SQLiteDataReader, T> mappingMethod, Action<SQLiteCommand> action = null)
         {
-            var connection = new SQLiteConnection(this.ConnectionString);
-
-            try
+            using (var connection = new SQLiteConnection(this.ConnectionString))
             {
                 connection.Open();
 
-                var command = new SQLiteCommand(sql, connection);
-
-                var reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (var command = new SQLiteCommand(sql, connection))
                 {
-                    return mappingMethod(reader);
+                    action?.Invoke(command);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return mappingMethod(reader);
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
                 }
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return default(T);
-        }
-
-        protected IEnumerable<T> GetItems(string sql, Func<SQLiteDataReader, T> mappingMethod)
-        {
-            var connection = new SQLiteConnection(this.ConnectionString, true);
-
-            try
-            {
-                connection.Open();
-
-                var command = new SQLiteCommand(sql, connection);
-
-                var reader = command.ExecuteReader();
-
-                var result = new List<T>();
-
-                while (reader.Read())
-                {
-                    result.Add(mappingMethod(reader));
-                }
-
-                return result;
-            }
-            finally
-            {
-                connection.Close();
             }
         }
 
-        protected int ExecuteNonQuery(string sql)
+        protected IEnumerable<T> GetItems(string sql, Func<SQLiteDataReader, T> mappingMethod, Action<SQLiteCommand> action = null)
         {
-            var connection = new SQLiteConnection(this.ConnectionString);
-
-            try
+            using (var connection = new SQLiteConnection(this.ConnectionString, true))
             {
+
                 connection.Open();
 
-                var command = new SQLiteCommand(sql, connection);
+                using (var command = new SQLiteCommand(sql, connection))
+                {
 
-                return command.ExecuteNonQuery();
+                    var result = new List<T>();
+                    
+                    action?.Invoke(command);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            result.Add(mappingMethod(reader));
+                        }
+                    }
+
+                    return result;
+                }
             }
-            finally
+        }
+
+        protected int ExecuteNonQuery(string sql, Action<SQLiteCommand> action = null)
+        {
+            using (var connection = new SQLiteConnection(this.ConnectionString))
             {
-                connection.Close();
+
+                connection.Open();
+
+                using (var command = new SQLiteCommand(sql, connection))
+                {
+                    action?.Invoke(command);
+                    return command.ExecuteNonQuery();
+                }
             }
         }
     }

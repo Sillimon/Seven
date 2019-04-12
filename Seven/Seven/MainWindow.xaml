@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Seven"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="800">
+        Title="MainWindow" Height="618" Width="1090" Margin="0,0,0,0">
 
-    <Grid>
-        <TabControl HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="792" Background="Black" FontWeight="Bold">
+    <Grid Height="Auto" Margin="0,0,2,0">
+        <TabControl HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="1075" Background="Black" FontWeight="Bold">
 
             <!-- TABS -->
             <TabItem x:Name="HomeTab" Header="Home">
@@ -20,7 +20,15 @@
                      Height="Auto">
 
                 <local:ucBook x:Name="ucBook"
-                              Height="480" Width="Auto"></local:ucBook>
+                              Height="Auto" HorizontalAlignment="Left" Width="798" FontWeight="Normal"/>
+
+            </TabItem>
+
+            <TabItem x:Name="AuthorTab" Header="Author"
+                     Height="Auto">
+
+                <local:ucAuthor x:Name="ucAuthor"
+                                Height="Auto" HorizontalAlignment="Left" Width="798" FontWeight="Normal"/>
 
             </TabItem>
         </TabControl>
