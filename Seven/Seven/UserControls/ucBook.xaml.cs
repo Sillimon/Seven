@@ -130,11 +130,7 @@ namespace Seven
             this.SelectedBookDate.Text = selectedBook.Date.ToLongDateString();
             this.SelectedBookGenre.Text = Enum.GetName(typeof(SevenLib.Helpers.Genre), selectedBook.Genre);
             this.SelectedBookSummary.Text = selectedBook.Summary;
-        }
-
-        private void SelectedBookAuthor_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO
+            this.SelectedBookAuthor.Text = selectedBook.Author.ToString();
         }
     }
 }

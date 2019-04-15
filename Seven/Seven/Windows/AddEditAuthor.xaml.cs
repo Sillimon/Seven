@@ -108,7 +108,7 @@ namespace Seven
             selectedAuthor.LastName = TbLastName.Text;
             selectedAuthor.FirstName = TbFirstName.Text;
             selectedAuthor.BirthDate = DateTime.Parse(DpBirthDate.Text);
-            selectedAuthor.DeathDate = String.IsNullOrEmpty(DpBirthDate.Text) ? (DateTime?)null : DateTime.Parse(DpBirthDate.Text);
+            selectedAuthor.DeathDate = String.IsNullOrEmpty(DpDeathDate.Text) ? (DateTime?)null : DateTime.Parse(DpDeathDate.Text);
             selectedAuthor.Nationality = (SevenLib.Helpers.Nationality)Enum.Parse(typeof(SevenLib.Helpers.Nationality), CbNationality.Text);
 
             this.DialogResult = true;

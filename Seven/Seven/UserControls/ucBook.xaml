@@ -18,7 +18,7 @@
                   HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" 
                             Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Button x:Name="btSearch" Grid.Column="0"
+        <Button x:Name="btSearch" Grid.Column="0" IsDefault="True"
                 HorizontalAlignment="Left" Margin="263,9,0,0" VerticalAlignment="Top" Width="75" Height="23" FontWeight="Normal" Click="BtSearch_Click">Search</Button>
 
         <DataGrid ItemsSource="{Binding books}" x:Name="dgvBooks" Grid.Column="0"
@@ -46,8 +46,8 @@
 
         <TextBox x:Name="SelectedBookSummary" Grid.Column="1"
                              HorizontalAlignment="Left" Height="327" Margin="10,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="337" FontWeight="Normal" FontSize="14" FontFamily="Calibri"/>
-
-        <Button x:Name="SelectedBookAuthor" Grid.Column="1" Content="Display Author"
-                HorizontalAlignment="Left" VerticalAlignment="Top" Width="337" Margin="10,518,0,0" Height="33" FontWeight="Normal" FontFamily="Calibri" FontSize="14" Click="SelectedBookAuthor_Click"/>
+        
+        <TextBox x:Name="SelectedBookAuthor" Grid.Column="1" 
+                 HorizontalAlignment="Left" Height="23" Margin="10,512,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="337" TextAlignment="Center"/>
     </Grid>
 </UserControl>

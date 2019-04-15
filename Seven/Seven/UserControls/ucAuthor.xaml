@@ -18,7 +18,7 @@
                   HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" 
                             Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Button x:Name="btSearch" Grid.Column="0"
+        <Button x:Name="btSearch" Grid.Column="0" IsDefault="True"
                 HorizontalAlignment="Left" Margin="263,9,0,0" VerticalAlignment="Top" Width="75" Height="23" FontWeight="Normal" Click="BtSearch_Click">Search</Button>
 
         <DataGrid ItemsSource="{Binding books}" x:Name="dgvAuthors" Grid.Column="0"

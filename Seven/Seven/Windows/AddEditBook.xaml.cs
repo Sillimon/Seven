@@ -60,7 +60,17 @@ namespace Seven
             this.DpDate.Text = selectedBook.Date.ToLongDateString();
             this.CbGenre.SelectedItem = this.CbGenre.Items.GetItemAt(CbGenre.Items.IndexOf(selectedBook.Genre.ToString()));
             this.TbSummary.Text = selectedBook.Summary;
-            this.CbAuthor.SelectedItem = this.CbAuthor.Items.GetItemAt(CbAuthor.Items.IndexOf(selectedBook.Author.ToString()));
+            //this.CbAuthor.SelectedItem = this.CbAuthor.Items.GetItemAt(CbAuthor.Items.IndexOf(selectedBook.Author.ToString()));
+
+            //TEST//
+
+            foreach (var a in CbAuthor.ItemsSource)
+            {
+                if (a.ToString() == selectedBook.Author.ToString())
+                {
+                    this.CbAuthor.SelectedItem = a;
+                }
+            }
         }
 
         #endregion
