@@ -11,7 +11,8 @@ namespace Seven
 {
     class BookViewModel
     {
-        public RepositoryBook repository;
+        public RepositoryBook rb;
+        public RepositoryCopy rc;
 
         public List<Book> books;
 
@@ -19,7 +20,8 @@ namespace Seven
 
         public BookViewModel()
         {
-            repository = new RepositoryBook();
+            rb = new RepositoryBook();
+            rc = new RepositoryCopy();
 
             refreshBooks();
         }
@@ -30,12 +32,12 @@ namespace Seven
 
         public void refreshBooks()
         {
-            books = repository.GetBooks().ToList<Book>();
+            books = rb.GetBooks().ToList<Book>();
         }
 
         public List<Book> searchBook(String title)
         {
-            return repository.GetBooksByBeginningOfTitle(title).ToList<Book>();
+            return rb.GetBooksByBeginningOfTitle(title).ToList<Book>();
         }
 
         #endregion
@@ -44,19 +46,28 @@ namespace Seven
 
         public bool AddBook(Book book)
         {
-            return repository.AddBook(book);
+            return rb.AddBook(book);
         }
 
         public bool EditBook(Book book)
         {
-            return repository.EditBook(book);
+            return rb.EditBook(book);
         }
 
         public bool DeleteBook(Book book)
         {
-            return repository.DeleteBookByID((int)book.ID);
+            return rb.DeleteBookByID((int)book.ID);
         }
 
+        public bool AddCopy(Book book)
+        {
+            return rc.AddCopy(new Copy(book));
+        }
+
+        public Int64 GetNbrOfCopy(Book book)
+        {
+            return rc.GetNumberOfCopies(book.ID);
+        }
         #endregion
     }
 }

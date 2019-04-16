@@ -21,7 +21,6 @@
 
                 <local:ucBook x:Name="ucBook"
                               Height="Auto" HorizontalAlignment="Left" Width="798" FontWeight="Normal"/>
-
             </TabItem>
 
             <TabItem x:Name="AuthorTab" Header="Author"
@@ -31,6 +30,12 @@
                                 Height="Auto" HorizontalAlignment="Left" Width="798" FontWeight="Normal"/>
 
             </TabItem>
+
+            <TabItem x:Name="LoanTab" Header="Loan"
+                     Height="Auto">
+                
+            </TabItem>
+            
         </TabControl>
 
     </Grid>

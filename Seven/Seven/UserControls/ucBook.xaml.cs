@@ -42,6 +42,11 @@ namespace Seven
             dgvBooks.Items.Refresh();
         }
 
+        public void refreshCopies(Book book)
+        {
+            this.SelectedBookNumberOfCopy.Text = bookModel.GetNbrOfCopy(book).ToString();
+        }
+
         #endregion
 
 
@@ -131,6 +136,20 @@ namespace Seven
             this.SelectedBookGenre.Text = Enum.GetName(typeof(SevenLib.Helpers.Genre), selectedBook.Genre);
             this.SelectedBookSummary.Text = selectedBook.Summary;
             this.SelectedBookAuthor.Text = selectedBook.Author.ToString();
+
+            refreshCopies(selectedBook);
+        }
+
+        private void BtAddCopy_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgvBooks.SelectedItem == null)
+                return;
+
+            Book selectedBook = (Book)dgvBooks.SelectedItem;
+
+            bookModel.AddCopy(selectedBook);
+
+            refreshCopies(selectedBook);
         }
     }
 }

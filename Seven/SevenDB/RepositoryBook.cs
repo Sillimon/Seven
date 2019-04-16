@@ -22,6 +22,12 @@ namespace SevenDB
 
         #region SELECT / GET
 
+        public Book GetBookByID(Int64 id)
+        {
+            var sql = "SELECT * FROM Book WHERE Id_Book=@ID";
+
+            return GetUniqueItem(sql, this.MapBook, command => { command.Parameters.AddWithValue("@ID", id); });
+        }
         public Book GetBookByTitle(string title)
         {
             var sql = "SELECT * FROM Book WHERE Title=@Title";

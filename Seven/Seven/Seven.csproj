@@ -73,6 +73,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControls\ucLoan.xaml.cs">
+      <DependentUpon>ucLoan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AddEditAuthor.xaml.cs">
       <DependentUpon>AddEditAuthor.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,10 @@
     <Compile Include="UserControls\ucBook.xaml.cs">
       <DependentUpon>ucBook.xaml</DependentUpon>
     </Compile>
+    <Page Include="UserControls\ucLoan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AddEditAuthor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

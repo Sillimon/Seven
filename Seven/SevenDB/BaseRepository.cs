@@ -79,5 +79,20 @@ namespace SevenDB
                 }
             }
         }
+
+        protected Int64 ExecuteScalar(string sql, Action<SQLiteCommand> action = null)
+        {
+            using (var connection = new SQLiteConnection(this.ConnectionString))
+            {
+
+                connection.Open();
+
+                using (var command = new SQLiteCommand(sql, connection))
+                {
+                    action?.Invoke(command);
+                    return (Int64)command.ExecuteScalar();
+                }
+            }
+        }
     }
 }
