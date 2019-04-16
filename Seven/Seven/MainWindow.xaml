@@ -33,7 +33,9 @@
 
             <TabItem x:Name="LoanTab" Header="Loan"
                      Height="Auto">
-                
+
+                <local:ucLoan x:Name="ucLoan"
+                              Height="Auto" HorizontalAlignment="Left" Width="798" FontWeight="Normal"/>
             </TabItem>
             
         </TabControl>

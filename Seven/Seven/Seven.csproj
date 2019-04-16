@@ -76,6 +76,7 @@
     <Compile Include="UserControls\ucLoan.xaml.cs">
       <DependentUpon>ucLoan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\LoanViewModel.cs" />
     <Compile Include="Windows\AddEditAuthor.xaml.cs">
       <DependentUpon>AddEditAuthor.xaml</DependentUpon>
     </Compile>
