@@ -63,6 +63,7 @@
     <Compile Include="Book.cs" />
     <Compile Include="Copy.cs" />
     <Compile Include="Helpers\Enums.cs" />
+    <Compile Include="Helpers\HashHelper.cs" />
     <Compile Include="Loan.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
