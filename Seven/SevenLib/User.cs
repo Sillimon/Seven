@@ -10,14 +10,13 @@ namespace SevenLib
     {
         #region CONSTRUCTORS
 
-        public User(String lastname, String firstname, String mail, String tel = "", List<Loan> loans = null, Int64? id = null)
+        public User(String lastname, String firstname, String mail, String tel = "", Int64? id = null)
         {
             this.ID = id;
             this.LastName = lastname;
             this.FirstName = firstname;
             this.Mail = mail;
             this.Tel = tel;
-            this.Loans = loans;
         }
 
         #endregion
@@ -33,8 +32,6 @@ namespace SevenLib
         public String Mail { get; set; }
 
         public String Tel { get; set; }
-
-        public List<Loan> Loans { get; set; }
 
         #endregion
 

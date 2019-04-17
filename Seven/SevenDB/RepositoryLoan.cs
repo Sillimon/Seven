@@ -39,7 +39,7 @@ namespace SevenDB
         {
             var sql = "SELECT * FROM Loan " +
                 "INNER JOIN Copy ON Loan.Copy = Copy.Reference " +
-                "INNER JOIN User ON Loan.Member = User.Id_User";
+                "INNER JOIN Member ON Loan.Member = Member.Id_Member";
 
             return GetItems(sql, this.MapLoan);
         }
