@@ -1,4 +1,5 @@
-﻿using SevenLib;
+﻿using Seven;
+using SevenLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,13 @@ namespace Seven
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static Member currentMember;
+
         public MainWindow()
         {
-            SevenDB.RepositoryBook rb = new SevenDB.RepositoryBook();
-            SevenDB.RepositoryAuthor ra = new SevenDB.RepositoryAuthor();
+            //Connection
+            Login t = new Login();
+            t.ShowDialog();
 
             InitializeComponent();
         }

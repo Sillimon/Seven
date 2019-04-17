@@ -10,23 +10,27 @@ namespace SevenLib
     {
         #region CONSTRUCTORS
 
-        public Member(String lastname, String firstname, String mail, String password, bool isAdmin = false, String tel = "", List<Loan> loans = null, Int64? id = null) : base(lastname, firstname, mail, tel, loans, id)
+        public Member(String lastname, String firstname, String mail, String password, bool isAdmin = false, String tel = "", Int64? id = null) : base(lastname, firstname, mail, tel, id)
         {
             this.ID = id;
             this.LastName = lastname;
             this.FirstName = firstname;
-            this.Password = password;
+            this.Password = Helpers.HashHelper.HashString(password);
             this.Mail = mail;
             this.Tel = tel;
             this.IsAdmin = isAdmin;
-            this.Loans = loans;
         }
 
         #endregion
 
         #region GETTERS/SETTERS
 
-        public String Password { get; set; }
+        private String m_password;
+        public String Password
+        {
+            get { return this.m_password; }
+            set { Helpers.HashHelper.HashString(value); }
+        }
 
         public bool IsAdmin { get; set; } = false;
 
