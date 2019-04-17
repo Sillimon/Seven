@@ -13,7 +13,7 @@
         <Label Content="LOGIN" HorizontalContentAlignment="Center" FontSize="20" FontWeight="SemiBold" Foreground="Red"
                HorizontalAlignment="Left" Margin="200,10,0,0" VerticalAlignment="Top" Width="100"/>
 
-        
+
         <Label x:Name="LbMail" Content="Mail :" 
                HorizontalAlignment="Left" Margin="100,65,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LbPassword" Content="Password :" 
@@ -21,23 +21,24 @@
 
         <TextBox x:Name="TbMail" Foreground="DarkViolet" FontWeight="DemiBold" FontSize="13"
             HorizontalAlignment="Left" Height="23" Margin="150,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <TextBox x:Name="TbPassword" Foreground="DarkViolet" FontWeight="DemiBold" FontSize="13"
-            HorizontalAlignment="Left" Height="23" Margin="150,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+        <PasswordBox x:Name="TbPassword" Foreground="DarkViolet" FontWeight="DemiBold" FontSize="13" PasswordChar="*"
+            HorizontalAlignment="Left" Height="23" Margin="150,100,0,0" VerticalAlignment="Top" Width="200"/>
 
-        
+
         <Button x:Name="BtLogin" Content="Login" FontSize="15" FontWeight="Bold"
-                HorizontalAlignment="Left" Margin="180,142,0,0" VerticalAlignment="Top" Width="140" Click="BtLogin_Click"/>
+                HorizontalAlignment="Left" Margin="180,142,0,0" VerticalAlignment="Top" Width="140" 
+                IsDefault="True" Click="BtLogin_Click"/>
 
-        
+
         <TextBlock x:Name="TbResponse" TextAlignment="Center" Foreground="Red" FontWeight="DemiBold" FontSize="13"
-            HorizontalAlignment="Left" Margin="100,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Height="45"/>
+            HorizontalAlignment="Left" Margin="100,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Height="45"/>
 
-        
-        <TextBlock x:Name="TbRegister" Text="Register ?" FontSize="10" TextAlignment="Right" TextDecorations="Underline" Foreground="OrangeRed"
-            HorizontalAlignment="Left" Margin="379,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105"
+
+        <TextBlock x:Name="TbRegister" Text="Register ?" FontSize="12" TextAlignment="Right" TextDecorations="Underline" Foreground="OrangeRed"
+            HorizontalAlignment="Left" Margin="359,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"
                    PreviewMouseDown="TbRegister_Clicked"/>
-        <TextBlock x:Name="TbForgotPassword" Text="Password forgotten ?" FontSize="10" TextAlignment="Right" TextDecorations="Underline" Foreground="OrangeRed"
-            HorizontalAlignment="Left" Margin="379,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105"
+        <TextBlock x:Name="TbForgotPassword" Text="Password forgotten ?" FontSize="12" TextAlignment="Right" TextDecorations="Underline" Foreground="OrangeRed"
+            HorizontalAlignment="Left" Margin="359,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"
                    PreviewMouseDown="TbForgotPassword_Clicked"/>
     </Grid>
 </Window>

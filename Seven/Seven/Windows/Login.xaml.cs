@@ -27,19 +27,30 @@ namespace Seven
             rm = new RepositoryMember();
 
             InitializeComponent();
+
+            TbMail.Focus();
         }
 
         private void BtLogin_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.currentMember = rm.GetMemberByIdentifiers(TbMail.Text, SevenLib.Helpers.HashHelper.HashString(TbPassword.Text));
+            MainWindow.currentMember = rm.GetMemberByIdentifiers(TbMail.Text, SevenLib.Helpers.HashHelper.HashString(TbPassword.Password));
+
+            if (MainWindow.currentMember == null)
+            {
+                TbResponse.Text = "The Login or Password is invalid !";
+                TbPassword.Password = String.Empty;
+            }
+            else
+                this.Close();
         }
 
         private void TbRegister_Clicked(object sender, RoutedEventArgs e)
         {
-            SevenLib.Member d = new SevenLib.Member("last", "first", "admin", "admin", true);
+            Register registerWindow = new Register();
 
-            if (rm.AddMember(d))
-                MessageBox.Show("Success");
+            registerWindow.ShowDialog();
+
+            this.DialogResult = registerWindow.DialogResult;
         }
 
         private void TbForgotPassword_Clicked(object sender, RoutedEventArgs e)
