@@ -15,7 +15,7 @@ namespace SevenLib
             this.ID = id;
             this.LastName = lastname;
             this.FirstName = firstname;
-            this.Password = Helpers.HashHelper.HashString(password);
+            this.Password = password;
             this.Mail = mail;
             this.Tel = tel;
             this.IsAdmin = isAdmin;
@@ -29,7 +29,7 @@ namespace SevenLib
         public String Password
         {
             get { return this.m_password; }
-            set { Helpers.HashHelper.HashString(value); }
+            set { m_password = Helpers.HashHelper.HashString(value); }
         }
 
         public bool IsAdmin { get; set; } = false;

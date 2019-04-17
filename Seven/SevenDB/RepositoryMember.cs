@@ -140,7 +140,7 @@ namespace SevenDB
             String firstname = (String)reader["FirstName"];
             String mail = (String)reader["Mail"];
             String password = (String)reader["Password"];
-            bool isAdmin = (bool)reader["IsAdmin"];
+            bool isAdmin = (Int64)reader["IsAdmin"] != 0;
             String tel = (String)reader["Tel"];
 
 
