@@ -26,9 +26,14 @@ namespace Seven
 
         public MainWindow()
         {
-            //Connection
-            Login t = new Login();
-            t.ShowDialog();
+            Login loginWindow = new Login();
+            loginWindow.ShowDialog();
+
+            if (loginWindow.DialogResult == false)
+            {
+                this.Close();
+                return;
+            }
 
             InitializeComponent();
         }
