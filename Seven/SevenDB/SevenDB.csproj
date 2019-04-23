@@ -66,6 +66,7 @@
     <Compile Include="RepositoryCopy.cs" />
     <Compile Include="RepositoryLoan.cs" />
     <Compile Include="RepositoryMember.cs" />
+    <Compile Include="RepositoryParameters.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

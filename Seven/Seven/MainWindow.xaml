@@ -8,11 +8,13 @@
         Title="MainWindow" Height="618" Width="1090" Margin="0,0,0,0">
 
     <Grid Height="Auto" Margin="0,0,2,0">
-        <TabControl HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="1075" Background="Black" FontWeight="Bold">
+        <TabControl x:Name="ControlTab" HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="1075" Background="Black" FontWeight="Bold">
 
             <!-- TABS -->
             <TabItem x:Name="HomeTab" Header="Home">
-                <Grid Background="#FFE5E5E5" Name="HomeControl"/>
+                
+                <local:ucHome x:Name="ucHome"
+                              Height="Auto" HorizontalAlignment="Left" Width="798" FontWeight="Normal"/>
             </TabItem>
 
 
@@ -37,8 +39,7 @@
                 <local:ucLoan x:Name="ucLoan"
                               Height="Auto" HorizontalAlignment="Left" Width="798" FontWeight="Normal"/>
             </TabItem>
-            
-        </TabControl>
 
+        </TabControl>
     </Grid>
 </Window>

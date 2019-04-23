@@ -10,7 +10,7 @@ namespace SevenDB
 {
     public class RepositoryMember : BaseRepository<Member>
     {
-        public RepositoryMember() : base(@"data source=C:\ProgramData\SEVEN\Database\Database.db;")
+        public RepositoryMember() : base(SevenLib.Helpers.Const.DBPath)
         {
 
         }

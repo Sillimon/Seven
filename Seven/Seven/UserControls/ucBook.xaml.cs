@@ -27,6 +27,14 @@ namespace Seven
         {
             InitializeComponent();
 
+            if (!MainWindow.currentMember.IsAdmin)
+            {
+                BtAdd.Visibility = Visibility.Hidden;
+                BtDelete.Visibility = Visibility.Hidden;
+                BtEdit.Visibility = Visibility.Hidden;
+                BtAddCopy.IsEnabled = false;
+            }
+
             bookModel = new BookViewModel();
 
             dgvBooks.ItemsSource = bookModel.books;

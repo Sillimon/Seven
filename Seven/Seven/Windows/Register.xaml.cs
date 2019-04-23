@@ -80,10 +80,10 @@ namespace Seven
                 false,
                 String.IsNullOrEmpty(TbTel.Text) ? String.Empty : TbTel.Text);
 
-            if(new RepositoryMember().AddMember(registerMember))
+            if(new RepositoryMember(SevenLib.Helpers.Const.DBPath).AddMember(registerMember))
             {
                 //search for member in DataBase to get its ID
-                registerMember = new RepositoryMember().GetMemberByIdentifiers(registerMember.Mail, registerMember.Password);
+                registerMember = new RepositoryMember(SevenLib.Helpers.Const.DBPath).GetMemberByIdentifiers(registerMember.Mail, registerMember.Password);
 
                 MainWindow.currentMember = registerMember;
                 this.DialogResult = true;

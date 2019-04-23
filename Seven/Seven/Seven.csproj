@@ -73,6 +73,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControls\ucHome.xaml.cs">
+      <DependentUpon>ucHome.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ucLoan.xaml.cs">
       <DependentUpon>ucLoan.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,10 @@
     <Compile Include="Windows\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Page Include="UserControls\ucHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ucLoan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

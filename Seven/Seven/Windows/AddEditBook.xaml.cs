@@ -32,6 +32,7 @@ namespace Seven
             selectedBook = new Book();
 
             ra = new RepositoryAuthor();
+            CheckRepository();
 
             InitializeComponent();
 
@@ -47,6 +48,7 @@ namespace Seven
             selectedBook = new Book(bookToEdit);
 
             ra = new RepositoryAuthor();
+            CheckRepository();
 
             InitializeComponent();
             
@@ -60,9 +62,6 @@ namespace Seven
             this.DpDate.Text = selectedBook.Date.ToLongDateString();
             this.CbGenre.SelectedItem = this.CbGenre.Items.GetItemAt(CbGenre.Items.IndexOf(selectedBook.Genre.ToString()));
             this.TbSummary.Text = selectedBook.Summary;
-            //this.CbAuthor.SelectedItem = this.CbAuthor.Items.GetItemAt(CbAuthor.Items.IndexOf(selectedBook.Author.ToString()));
-
-            //TEST//
 
             foreach (var a in CbAuthor.ItemsSource)
             {
@@ -121,6 +120,11 @@ namespace Seven
             }
 
             return true;
+        }
+
+        private void CheckRepository()
+        {
+            ra.ConnectionString = SevenLib.Helpers.Const.DBPath;
         }
 
         #endregion

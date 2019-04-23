@@ -22,7 +22,7 @@ namespace Seven
         {
             rb = new RepositoryBook();
             rc = new RepositoryCopy();
-
+            
             refreshBooks();
         }
 
@@ -32,12 +32,20 @@ namespace Seven
 
         public void refreshBooks()
         {
+            RefreshRepositories();
             books = rb.GetBooks().ToList<Book>();
         }
 
         public List<Book> searchBook(String title)
         {
+            RefreshRepositories();
             return rb.GetBooksByBeginningOfTitle(title).ToList<Book>();
+        }
+
+        private void RefreshRepositories()
+        {
+            rb.ConnectionString = SevenLib.Helpers.Const.DBPath;
+            rc.ConnectionString = SevenLib.Helpers.Const.DBPath;
         }
 
         #endregion
@@ -46,26 +54,31 @@ namespace Seven
 
         public bool AddBook(Book book)
         {
+            RefreshRepositories();
             return rb.AddBook(book);
         }
 
         public bool EditBook(Book book)
         {
+            RefreshRepositories();
             return rb.EditBook(book);
         }
 
         public bool DeleteBook(Book book)
         {
+            RefreshRepositories();
             return rb.DeleteBookByID((int)book.ID);
         }
 
         public bool AddCopy(Book book)
         {
+            RefreshRepositories();
             return rc.AddCopy(new Copy(book));
         }
 
         public Int64 GetNbrOfCopy(Book book)
         {
+            RefreshRepositories();
             return rc.GetNumberOfCopies(book.ID);
         }
         #endregion

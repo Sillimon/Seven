@@ -12,7 +12,7 @@ namespace SevenDB
 {
     public class RepositoryAuthor : BaseRepository<Author>
     {
-        public RepositoryAuthor() : base(@"data source=C:\ProgramData\SEVEN\Database\Database.db;")
+        public RepositoryAuthor() : base(SevenLib.Helpers.Const.DBPath)
         {
 
         }

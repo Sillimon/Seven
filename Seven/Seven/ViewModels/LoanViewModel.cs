@@ -33,11 +33,13 @@ namespace Seven.ViewModels
 
         public void RefreshCopies()
         {
+            RefreshRepositories();
             copies = rc.GetCopiesNotBorrowed().ToList<Copy>();
         }
 
         public List<Copy> SearchCopy(String title)
         {
+            RefreshRepositories();
             return rc.GetCopiesByBookTitle(title).ToList<Copy>();
         }
 
@@ -45,8 +47,16 @@ namespace Seven.ViewModels
         {
             if (MainWindow.currentMember.ID == null)
                 return;
-            
+
+            RefreshRepositories();
+
             loans = rl.GetLoansByMemberID((Int64)MainWindow.currentMember.ID).ToList<Loan>();
+        }
+
+        private void RefreshRepositories()
+        {
+            rc.ConnectionString = SevenLib.Helpers.Const.DBPath;
+            rl.ConnectionString = SevenLib.Helpers.Const.DBPath;
         }
 
         public void BorrowCopy(Copy copy)
@@ -55,10 +65,11 @@ namespace Seven.ViewModels
             EditCopy(copy);
         }
 
-        public void ReturnCopy(Copy copy)
+        public void ReturnCopy(Loan loan)
         {
-            copy.Borrowed = false;
-            EditCopy(copy);
+            loan.Copy.Borrowed = false;
+            EditLoan(loan);
+            EditCopy(loan.Copy);
         }
 
         #endregion
@@ -67,16 +78,19 @@ namespace Seven.ViewModels
 
         public bool AddLoan(Loan loan)
         {
+            RefreshRepositories();
             return rl.AddLoan(loan);
         }
 
         public bool EditLoan(Loan loan)
         {
+            RefreshRepositories();
             return rl.EditLoan(loan);
         }
 
         public bool EditCopy(Copy copyToEdit)
         {
+            RefreshRepositories();
             return rc.EditCopy(copyToEdit);
         }
 

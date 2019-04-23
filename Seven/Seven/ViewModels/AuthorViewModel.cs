@@ -11,7 +11,7 @@ namespace Seven
 {
     class AuthorViewModel
     {
-        public RepositoryAuthor repository;
+        public RepositoryAuthor ra;
 
         public List<Author> authors;
 
@@ -19,8 +19,8 @@ namespace Seven
 
         public AuthorViewModel()
         {
-            repository = new RepositoryAuthor();
-
+            ra = new RepositoryAuthor();
+            
             refreshAuthors();
         }
 
@@ -30,12 +30,19 @@ namespace Seven
 
         public void refreshAuthors()
         {
-            authors = repository.GetAuthors().ToList<Author>();
+            refreshRepository();
+            authors = ra.GetAuthors().ToList<Author>();
         }
 
         public List<Author> searchAuthor(String lastname)
         {
-            return repository.GetAuthorsByBeginningOfLastName(lastname).ToList<Author>();
+            refreshRepository();
+            return ra.GetAuthorsByBeginningOfLastName(lastname).ToList<Author>();
+        }
+
+        private void refreshRepository()
+        {
+            ra.ConnectionString = SevenLib.Helpers.Const.DBPath;
         }
 
         #endregion
@@ -44,17 +51,20 @@ namespace Seven
 
         public bool AddAuthor(Author author)
         {
-            return repository.AddAuthor(author);
+            refreshRepository();
+            return ra.AddAuthor(author);
         }
 
         public bool EditAuthor(Author author)
         {
-            return repository.EditAuthor(author);
+            refreshRepository();
+            return ra.EditAuthor(author);
         }
 
         public bool DeleteAuthor(Author author)
         {
-            return repository.DeleteAuthorByID((int)author.ID);
+            refreshRepository();
+            return ra.DeleteAuthorByID((int)author.ID);
         }
 
         #endregion

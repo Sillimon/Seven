@@ -10,7 +10,7 @@ namespace SevenDB
 {
     public class RepositoryCopy : BaseRepository<Copy>
     {
-        public RepositoryCopy() : base(@"data source=C:\ProgramData\SEVEN\Database\Database.db;")
+        public RepositoryCopy() : base(SevenLib.Helpers.Const.DBPath)
         {
 
         }
@@ -126,7 +126,7 @@ namespace SevenDB
 
         private Copy MapCopy(DbDataReader reader)
         {
-            return new Copy(new RepositoryBook().GetBookByID((Int64)reader["Book"]), (Int64)reader["Borrowed"] != 0, (Int64)reader["Reference"]);
+            return new Copy(new RepositoryBook(SevenLib.Helpers.Const.DBPath).GetBookByID((Int64)reader["Book"]), (Int64)reader["Borrowed"] != 0, (Int64)reader["Reference"]);
         }
 
         #endregion

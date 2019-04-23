@@ -10,7 +10,7 @@ namespace SevenDB
 {
     public class RepositoryLoan : BaseRepository<Loan>
     {
-        public RepositoryLoan() : base(@"data source=C:\ProgramData\SEVEN\Database\Database.db;")
+        public RepositoryLoan() : base(SevenLib.Helpers.Const.DBPath)
         {
 
         }
@@ -113,8 +113,8 @@ namespace SevenDB
                 ID = (Int64)reader["Id_Loan"],
                 LoanDate = DateTime.Parse((string)reader["LoanDate"]),
                 ReturnDate = returndate,
-                Copy = new RepositoryCopy().GetCopyByReference((Int64)reader["Copy"]),
-                Member = new RepositoryMember().GetMemberByID((Int64)reader["Member"])
+                Copy = new RepositoryCopy(SevenLib.Helpers.Const.DBPath).GetCopyByReference((Int64)reader["Copy"]),
+                Member = new RepositoryMember(SevenLib.Helpers.Const.DBPath).GetMemberByID((Int64)reader["Member"])
             };
         }
 

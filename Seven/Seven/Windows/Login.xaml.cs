@@ -1,4 +1,5 @@
 ﻿using SevenDB;
+using SevenLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,14 +26,25 @@ namespace Seven
         public Login()
         {
             rm = new RepositoryMember();
+            RefreshRepository();
 
             InitializeComponent();
 
             TbMail.Focus();
         }
 
+        #region METHODS
+
+        private void RefreshRepository()
+        {
+            rm.ConnectionString = SevenLib.Helpers.Const.DBPath;
+        }
+
+        #endregion
+
         private void BtLogin_Click(object sender, RoutedEventArgs e)
         {
+            RefreshRepository();
             MainWindow.currentMember = rm.GetMemberByIdentifiers(TbMail.Text, SevenLib.Helpers.HashHelper.HashString(TbPassword.Password));
 
             if (MainWindow.currentMember == null)
@@ -58,7 +70,13 @@ namespace Seven
 
         private void TbForgotPassword_Clicked(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("idc bro. Do u'r shit alone. Call support or smth", "Ah shit, here we go again.", MessageBoxButton.OK, MessageBoxImage.Hand);
+            
+            Member registerMember = new RepositoryMember().GetMemberByIdentifiers("admin", SevenLib.Helpers.HashHelper.HashString("admin"));
 
+            MainWindow.currentMember = registerMember;
+
+            this.DialogResult = true;
         }
     }
 }

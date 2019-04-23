@@ -88,7 +88,15 @@ namespace Seven
 
             MessageBoxResult mbr = MessageBox.Show(String.Format("Do you want to return {0} ?", loan.Copy.Book.Title), "Confirm ?", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            //TODO
+            if(mbr == MessageBoxResult.Yes)
+            {
+                loan.ReturnDate = DateTime.Now;
+
+                loanModel.ReturnCopy(loan);
+
+                RefreshLoans();
+                RefreshCopies();
+            }
         }
     }
 }

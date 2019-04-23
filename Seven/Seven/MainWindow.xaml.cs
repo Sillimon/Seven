@@ -36,6 +36,12 @@ namespace Seven
             }
 
             InitializeComponent();
+
+            if (currentMember.IsAdmin == false)
+            {
+                ControlTab.SelectedIndex = 1;
+                HomeTab.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

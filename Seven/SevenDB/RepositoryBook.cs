@@ -11,7 +11,7 @@ namespace SevenDB
 {
     public class RepositoryBook : BaseRepository<Book>
     {
-        public RepositoryBook() : base(@"data source=C:\ProgramData\SEVEN\Database\Database.db;")
+        public RepositoryBook() : base(SevenLib.Helpers.Const.DBPath)
         {
 
         }
@@ -150,7 +150,7 @@ namespace SevenDB
                 Date = DateTime.Parse((string)reader["Date"]),
                 Genre = (SevenLib.Helpers.Genre)(Int64)reader["Genre"],
                 Summary = (string)reader["Summary"],
-                Author = new RepositoryAuthor().GetAuthorById((Int64)reader["Author"])
+                Author = new RepositoryAuthor(SevenLib.Helpers.Const.DBPath).GetAuthorById((Int64)reader["Author"])
             };
         }
 
