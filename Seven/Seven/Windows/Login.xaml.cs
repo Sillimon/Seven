@@ -41,7 +41,10 @@ namespace Seven
                 TbPassword.Password = String.Empty;
             }
             else
+            {
+                this.DialogResult = true;
                 this.Close();
+            }
         }
 
         private void TbRegister_Clicked(object sender, RoutedEventArgs e)

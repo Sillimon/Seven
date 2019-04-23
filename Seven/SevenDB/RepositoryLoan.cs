@@ -52,13 +52,17 @@ namespace SevenDB
         {
             var sql = "INSERT INTO Loan (LoanDate, ReturnDate, Copy, Member) VALUES (@LoanDate, @ReturnDate, @Copy, @Member)";
 
+            String returndate = null;
+            if (loan.ReturnDate != null)
+                returndate = loan.ReturnDate.Value.ToLongDateString();
+
             return ExecuteNonQuery(sql, command =>
             {
                 command.Parameters.Add("@LoanDate", System.Data.DbType.String);
                 command.Parameters["@LoanDate"].Value = loan.LoanDate.ToLongDateString();
 
                 command.Parameters.Add("@ReturnDate", System.Data.DbType.String);
-                command.Parameters["@ReturnDate"].Value = loan.ReturnDate.Value.ToLongDateString();
+                command.Parameters["@ReturnDate"].Value = returndate;
 
                 command.Parameters.Add("@Copy", System.Data.DbType.Int64);
                 command.Parameters["@Copy"].Value = loan.Copy.Reference;
@@ -78,10 +82,14 @@ namespace SevenDB
                 "SET ReturnDate = @ReturnDate " +
                 "WHERE Id_Loan = @ID";
 
+            String returndate = null;
+            if (loanToEdit.ReturnDate != null)
+                returndate = loanToEdit.ReturnDate.Value.ToLongDateString();
+
             return ExecuteNonQuery(sql, command =>
             {
                 command.Parameters.Add("@ReturnDate", System.Data.DbType.String);
-                command.Parameters["@ReturnDate"].Value = loanToEdit.ReturnDate.Value.ToLongDateString();
+                command.Parameters["@ReturnDate"].Value = returndate;
 
                 command.Parameters.Add("@ID", System.Data.DbType.Int64);
                 command.Parameters["@ID"].Value = loanToEdit.ID;
@@ -102,6 +110,7 @@ namespace SevenDB
 
             return new Loan()
             {
+                ID = (Int64)reader["Id_Loan"],
                 LoanDate = DateTime.Parse((string)reader["LoanDate"]),
                 ReturnDate = returndate,
                 Copy = new RepositoryCopy().GetCopyByReference((Int64)reader["Copy"]),

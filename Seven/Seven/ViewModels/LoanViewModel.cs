@@ -23,29 +23,42 @@ namespace Seven.ViewModels
             rc = new RepositoryCopy();
             rl = new RepositoryLoan();
 
-            refreshCopies();
-            refreshLoans();
+            RefreshCopies();
+            RefreshLoans();
         }
 
         #endregion
 
         #region METHODS
 
-        public void refreshCopies()
+        public void RefreshCopies()
         {
-            copies = rc.GetCopies().ToList<Copy>();
+            copies = rc.GetCopiesNotBorrowed().ToList<Copy>();
         }
 
-        public List<Copy> searchCopy(String title)
+        public List<Copy> SearchCopy(String title)
         {
             return rc.GetCopiesByBookTitle(title).ToList<Copy>();
         }
 
-        public void refreshLoans()
+        public void RefreshLoans()
         {
-            //Get user and search loans for this user
+            if (MainWindow.currentMember.ID == null)
+                return;
+            
+            loans = rl.GetLoansByMemberID((Int64)MainWindow.currentMember.ID).ToList<Loan>();
+        }
 
-            //loans = rl.GetCopies().ToList<Copy>();
+        public void BorrowCopy(Copy copy)
+        {
+            copy.Borrowed = true;
+            EditCopy(copy);
+        }
+
+        public void ReturnCopy(Copy copy)
+        {
+            copy.Borrowed = false;
+            EditCopy(copy);
         }
 
         #endregion
@@ -60,6 +73,11 @@ namespace Seven.ViewModels
         public bool EditLoan(Loan loan)
         {
             return rl.EditLoan(loan);
+        }
+
+        public bool EditCopy(Copy copyToEdit)
+        {
+            return rc.EditCopy(copyToEdit);
         }
 
         #endregion

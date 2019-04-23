@@ -37,9 +37,7 @@ namespace SevenDB
 
         public IEnumerable<Copy> GetCopiesByBookTitle(String title)
         {
-            //No risks of any SQL injection with this query since it's a public information and the 'LIKE' keyword doesn't allow any inner query.
-            //Consequently, no use of the SQLParameters
-            var sql = @"SELECT Copy.Reference, Copy.Book
+            var sql = @"SELECT Copy.Reference, Copy.Borrowed, Copy.Book
                         FROM Book
                         JOIN Copy ON Copy.Book = Book.Id_Book
                         WHERE Book.Title LIKE ('%' || @title || '%')";
@@ -55,18 +53,29 @@ namespace SevenDB
             return GetItems(sql, this.MapCopy);
         }
 
+        public IEnumerable<Copy> GetCopiesNotBorrowed()
+        {
+            var sql = "SELECT * FROM Copy " +
+                "INNER JOIN Book ON Copy.Book = Book.Id_Book " +
+                "WHERE Borrowed = @Borrowed ";
+
+            return GetItems(sql, this.MapCopy, command => { command.Parameters.AddWithValue("@Borrowed", false); });
+        }
+
         #endregion
 
         #region ADD / INSERT
 
         public bool AddCopy(Copy copy)
         {
-            var sql = "INSERT INTO Copy VALUES (@Reference, @Book)";
+            var sql = "INSERT INTO Copy VALUES (@Reference, @Borrowed, @Book)";
 
             return ExecuteNonQuery(sql, command =>
             {
                 command.Parameters.Add("@Reference", System.Data.DbType.Int64);
                 command.Parameters["@Reference"].Value = copy.Reference;
+
+                command.Parameters.AddWithValue("@Borrowed", copy.Borrowed);
 
                 command.Parameters.Add("@Book", System.Data.DbType.Int64);
                 command.Parameters["@Book"].Value = copy.Book.ID;
@@ -95,11 +104,14 @@ namespace SevenDB
         public bool EditCopy(Copy copyToEdit)
         {
             var sql = "UPDATE Copy " +
-                "SET Book = @Book " +
+                "SET Borrowed = @Borrowed, " +
+                "Book = @Book " +
                 "WHERE Reference = @Reference";
 
             return ExecuteNonQuery(sql, command =>
             {
+                command.Parameters.AddWithValue("@Borrowed", copyToEdit.Borrowed);
+
                 command.Parameters.Add("@Book", System.Data.DbType.Int64);
                 command.Parameters["@Book"].Value = copyToEdit.Book.ID;
 
@@ -114,7 +126,7 @@ namespace SevenDB
 
         private Copy MapCopy(DbDataReader reader)
         {
-            return new Copy(new RepositoryBook().GetBookByID((Int64)reader["Book"]), (Int64)reader["Reference"]);
+            return new Copy(new RepositoryBook().GetBookByID((Int64)reader["Book"]), (Int64)reader["Borrowed"] != 0, (Int64)reader["Reference"]);
         }
 
         #endregion

@@ -8,15 +8,18 @@ namespace SevenLib
 {
     public class Copy
     {
-        public Copy(Book book, Int64? reference = null)
+        public Copy(Book book, bool borrowed = false, Int64? reference = null)
         {
             this.Reference = reference;
+            this.Borrowed = borrowed;
             this.Book = book;
         }
 
         #region GETTERS/SETTERS
 
         public Int64? Reference { get; set; }
+
+        public bool Borrowed { get; set; }
 
         public Book Book { get; set; }
 

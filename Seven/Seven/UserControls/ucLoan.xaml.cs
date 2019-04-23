@@ -33,22 +33,22 @@ namespace Seven
             dgvCopy.ItemsSource = loanModel.copies;
             dgvLoan.ItemsSource = loanModel.loans;
 
-            refreshCopies();
-            refreshLoans();
+            RefreshCopies();
+            RefreshLoans();
         }
 
         #region METHODS
 
-        public void refreshCopies()
+        public void RefreshCopies()
         {
-            loanModel.refreshCopies();
+            loanModel.RefreshCopies();
             dgvCopy.ItemsSource = loanModel.copies;
             dgvCopy.Items.Refresh();
         }
 
-        public void refreshLoans()
+        public void RefreshLoans()
         {
-            loanModel.refreshLoans();
+            loanModel.RefreshLoans();
             dgvLoan.ItemsSource = loanModel.loans;
             dgvLoan.Items.Refresh();
         }
@@ -57,7 +57,7 @@ namespace Seven
 
         private void BtSearch_Click(object sender, RoutedEventArgs e)
         {
-            dgvCopy.ItemsSource = loanModel.searchCopy(TbSearchCopy.Text);
+            dgvCopy.ItemsSource = loanModel.SearchCopy(TbSearchCopy.Text);
         }
 
         private void BtBorrow_Click(object sender, RoutedEventArgs e)
@@ -67,15 +67,28 @@ namespace Seven
 
             Copy copy = (Copy)dgvCopy.SelectedItem;
 
-            MessageBoxResult mbr = MessageBox.Show("Do you really want to Borrow " + copy.Book.Title, "Confirm ?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult mbr = MessageBox.Show(String.Format("Do you really want to borrow {0} ?", copy.Book.Title), "Confirm ?", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (mbr == MessageBoxResult.Yes)
             {
-                loanModel.AddLoan();
-            }
-            
+                loanModel.AddLoan(new Loan(DateTime.Now, copy, MainWindow.currentMember));
+                loanModel.BorrowCopy(copy);
 
-            
+                RefreshLoans();
+                RefreshCopies();
+            }
+        }
+
+        private void BtReturn_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgvLoan.SelectedItem == null)
+                return;
+
+            Loan loan = (Loan)dgvLoan.SelectedItem;
+
+            MessageBoxResult mbr = MessageBox.Show(String.Format("Do you want to return {0} ?", loan.Copy.Book.Title), "Confirm ?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            //TODO
         }
     }
 }

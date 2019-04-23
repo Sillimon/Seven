@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Seven"
+             xmlns:lib="clr-namespace:SevenLib;assembly=SevenLib"
              mc:Ignorable="d" Height="Auto" Width="789">
 
     <Grid x:Name="LoanControl"
@@ -13,15 +14,16 @@
             HorizontalAlignment="Left" Height="23" Margin="10,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
         <Button x:Name="BtSearch" Content="Search" HorizontalAlignment="Left" Margin="280,25,0,0" VerticalAlignment="Top" Width="112" Height="23" Click="BtSearch_Click"/>
         <DataGrid x:Name="dgvCopy" 
-            HorizontalAlignment="Left" Height="236" Margin="10,53,0,0" VerticalAlignment="Top" Width="382"
-                  CanUserAddRows="False" CanUserDeleteRows="False"/>
+            HorizontalAlignment="Left" Height="498" Margin="10,53,0,0" VerticalAlignment="Top" Width="382"
+                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"/>
 
-        <Button x:Name="BtBorrow"  Content="==>" 
-                HorizontalAlignment="Left" Margin="485,140,0,0" VerticalAlignment="Top" Width="75" Height="71" Click="BtBorrow_Click"/>
+        <Button x:Name="BtBorrow"  Content="==&gt;" 
+                HorizontalAlignment="Left" Margin="413,140,0,0" VerticalAlignment="Top" Width="75" Height="71" Click="BtBorrow_Click"/>
+        <Button x:Name="BtReturn" Content="&lt;=="
+            HorizontalAlignment="Left" Margin="413,300,0,0" VerticalAlignment="Top" Width="75" Height="71" Click="BtReturn_Click"/>
 
         <DataGrid x:Name="dgvLoan" 
-            HorizontalAlignment="Left" Height="498" Margin="667,53,0,0" VerticalAlignment="Top" Width="382"
-                  CanUserAddRows="False" CanUserDeleteRows="False"/>
-
+            HorizontalAlignment="Left" Height="526" Margin="508,25,0,0" VerticalAlignment="Top" Width="541"
+                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"/>
     </Grid>
 </UserControl>

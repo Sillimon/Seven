@@ -82,6 +82,9 @@ namespace Seven
 
             if(new RepositoryMember().AddMember(registerMember))
             {
+                //search for member in DataBase to get its ID
+                registerMember = new RepositoryMember().GetMemberByIdentifiers(registerMember.Mail, registerMember.Password);
+
                 MainWindow.currentMember = registerMember;
                 this.DialogResult = true;
             }
