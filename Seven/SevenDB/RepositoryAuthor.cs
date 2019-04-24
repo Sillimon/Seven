@@ -73,7 +73,7 @@ namespace SevenDB
                 command.Parameters["@BirthDate"].Value = author.BirthDate.ToLongDateString();
 
                 command.Parameters.Add("@DeathDate", System.Data.DbType.String);
-                command.Parameters["@DeathDate"].Value = author.DeathDate.Value.ToLongDateString();
+                command.Parameters["@DeathDate"].Value = author.DeathDate != null ? author.DeathDate.Value.ToLongDateString() : null;
 
                 command.Parameters.Add("@Nationality", System.Data.DbType.UInt16);
                 command.Parameters["@Nationality"].Value = (int)author.Nationality;
