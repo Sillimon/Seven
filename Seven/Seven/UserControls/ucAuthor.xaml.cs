@@ -1,4 +1,5 @@
-﻿using SevenLib;
+﻿using SevenDB;
+using SevenLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -141,7 +142,7 @@ namespace Seven
 
             this.SelectedAuthorNationality.Text = SevenLib.Helpers.EnumHelpers.ToDescriptionString(selectedAuthor.Nationality);
 
-            this.SelectedAuthorBooks.Text = "TODO";
+            this.SelectedAuthorBooks.ItemsSource = new RepositoryBook().GetBooksByAuthor((int)selectedAuthor.ID);
         }
     }
 }

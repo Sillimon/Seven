@@ -49,7 +49,8 @@
             HorizontalAlignment="Left" Height="23" Margin="10,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="337" 
             FontWeight="Normal" FontFamily="Calibri" FontSize="14" TextAlignment="Center"/>
         
-        <TextBox x:Name="SelectedAuthorBooks" Grid.Column="1"
-                             HorizontalAlignment="Left" Height="339" Margin="10,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="337" FontWeight="Normal" FontSize="14" FontFamily="Calibri"/>
+        <DataGrid x:Name="SelectedAuthorBooks" Grid.Column="1"
+                             HorizontalAlignment="Left" Height="339" Margin="10,216,0,0" VerticalAlignment="Top" Width="337" FontWeight="Normal" FontSize="14" FontFamily="Calibri"
+                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"/>
     </Grid>
 </UserControl>

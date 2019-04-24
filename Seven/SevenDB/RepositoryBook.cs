@@ -44,6 +44,13 @@ namespace SevenDB
             return GetItems(sql, this.MapBook);
         }
 
+        public IEnumerable<Book> GetBooksByAuthor(int id)
+        {
+            var sql = "SELECT * FROM Book WHERE Author = @Author";
+
+            return GetItems(sql, this.MapBook, command => { command.Parameters.AddWithValue("@Author", id); });
+        }
+
         public IEnumerable<Book> GetBooks()
         {
             var sql = "SELECT * FROM Book INNER JOIN Author ON Book.Author = Author.Id_Author";
